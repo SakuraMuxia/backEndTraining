@@ -16,7 +16,7 @@ public class YangHuiTri {
         }
         // 遍历 打印
         for(int i = 0;i < yh.length;i++){
-            for(int j = 6;j >= i;j--){
+            for(int j = 6;j > i;j--){
                 System.out.print(" "); // 打印一个倒三角形
             }
             for(int j = 0;j <= i;j++){  // 打印一个正三角形
