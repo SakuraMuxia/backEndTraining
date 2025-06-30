@@ -1,13 +1,23 @@
 package com.object.pet;
 
 public class Pet {
-    // 属性私有
-    private String name;
-    private char sex;
-    private int health;
-
-
-    // 方法公开
+    // 属性
+    protected String name;
+    protected char sex;
+    public int health;
+    // 父类中的无参构造方法
+    public Pet(){}
+    // 父类的有参构造方法
+    public Pet(String name,char sex,int health){
+        this.name = name;
+        this.sex = sex;
+        this.health = health;
+    }
+    // 父类中的有参构造
+    public Pet(int health){
+        this.health = health;
+    }
+    // getter和setter方法
     public void setHealth(int health) {
         if(health > 0 && health < 100){
             // 设置默认值
@@ -42,10 +52,10 @@ public class Pet {
     public char getSex() {
         return sex;
     }
-    // 父类中无法访问子类中的成员
+    // 父类中print方法
     public void print(){
-        System.out.println("宠物名字是"+name);
-        System.out.println("宠物健康值是"+health);
-        System.out.println("宠物性别是"+sex);
+        System.out.println("名字:"+name);
+        System.out.println("健康值:"+health);
+        System.out.println("性别:"+sex);
     }
 }
