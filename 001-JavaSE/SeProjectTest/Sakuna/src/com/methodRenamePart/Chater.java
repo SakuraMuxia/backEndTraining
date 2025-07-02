@@ -1,2 +1,4 @@
-package com.methodRenamePart;public class Chater {
+package com.methodRenamePart;
+
+public class Chater {
 }
