@@ -45,6 +45,8 @@ public class Pet {
     public void cure(){
         System.out.println("宠物看病");
     }
-
-
+    // 父类中定义一个吃饭的静态方法
+    public static void eat(){
+        System.out.println("宠物吃饭");
+    }
 }

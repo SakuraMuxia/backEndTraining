@@ -29,4 +29,12 @@ public class Dog extends Pet{
     public void playFlyDisc(){
         System.out.println("狗狗玩飞盘");
     }
+    // 非虚方法
+    public static void swimming(){
+        System.out.println("狗狗在游泳");
+    }
+    // 子类中定义一个吃饭的静态方法
+    public static void eat(){
+        System.out.println("狗狗吃骨头");
+    }
 }

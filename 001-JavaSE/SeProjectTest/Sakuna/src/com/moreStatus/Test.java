@@ -26,14 +26,5 @@ public class Test {
             Dog dog = (Dog) pet;
             dog.playFlyDisc();
         }
-        // 没有向上转型
-        Pet p1 = new Pet();
-        if(p1 instanceof  Dog){ // 判断类型不正确, pet 不属于 Dog类型
-            Dog dog1 = (Dog)p1; // 转型错误 有异常 ClassCastException 报错
-            System.out.println("dog1 = " + dog1);
-        }else{
-            System.out.println("类型不匹配");
-        }
-        System.out.println("程序结束");
     }
 }
