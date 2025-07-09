@@ -22,6 +22,7 @@ public class Printer {
     }
 
     public Printer() {
+
     }
 
     public Printer(InkBox inkBox, Paper paper) {
