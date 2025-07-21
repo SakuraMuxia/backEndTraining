@@ -14,9 +14,9 @@ base_dir = os.getcwd()
 data_dir = os.path.join(base_dir, 'data')
 
 # 拼接文件路径
-txt_file = os.path.join(data_dir, 'cards_lt.txt')
-excel_file = os.path.join(data_dir, 'data_lt.xlsx')
-output_file = os.path.join(data_dir, 'output2.xlsx')
+txt_file = os.path.join(data_dir, 'data_lt19.txt')
+excel_file = os.path.join(data_dir, 'data_lt19.xlsx')
+output_file = os.path.join(data_dir, 'output1_19.xlsx')
 
 # 读取txt文件，每行一个ICCID
 txt_data = set(line.strip() for line in open(txt_file, encoding='utf-8'))
@@ -32,7 +32,7 @@ df = pd.read_excel(excel_file, sheet_name=sheet_name, dtype=str, engine='openpyx
 df[column_name] = df[column_name].astype(str).str.strip().str.replace('"', '', regex=False)
 
 # 在Excel文件中标注是否在txt文件中
-df['Found'] = df[column_name].isin(txt_data).map({True: '联通', False: ''})
+df['Found'] = df[column_name].isin(txt_data).map({True: '找到', False: ''})
 
 # 找出txt文件中但不在Excel文件中的ICCID
 not_found = txt_data - set(df[column_name])
