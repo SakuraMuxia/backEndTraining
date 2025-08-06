@@ -14,13 +14,13 @@ import pandas as pd
 
 # 当前目录的 data 子目录
 base_dir = os.getcwd()
-data_dir = os.path.join(base_dir, 'data')
+data_dir = os.path.join(base_dir, 'D:\\devSpace\\product\\cardInfo\\')
 
 # 文件路径
-switch_txt = os.path.join(data_dir, 'cards_switch.txt')
-cool_txt = os.path.join(data_dir, 'cards_cool.txt')
-excel_file = os.path.join(data_dir, 'data.xlsx')
-output_file = os.path.join(data_dir, 'output_labeled.xlsx')
+switch_txt = os.path.join(data_dir, 'dianxin_kg_8_1.txt')
+cool_txt = os.path.join(data_dir, 'dianxin_jw_8_1.txt')
+excel_file = os.path.join(data_dir, 'data_8_1.xlsx')
+output_file = os.path.join(data_dir, 'output.xlsx')
 not_found_file = os.path.join(data_dir, 'iccids_not_found.txt')
 
 # 读取两个 txt 文件中的 ICCID（去除空行和空格）

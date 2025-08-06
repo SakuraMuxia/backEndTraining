@@ -2,11 +2,22 @@ import os
 import pandas as pd
 
 # ✅ 配置开关：是否忽略 Excel ICCID 最后一位
+
+# 有两个 txt 文件，分别包含：
+# 开关项目的 ICCID 列表（例如 cards_switch.txt）
+# 降温项目的 ICCID 列表（例如 cards_cool.txt）
+#
+# 一个 Excel 文件中也有一列 ICCID，需要
+# 如果某个 ICCID 在“开关 txt 文件”中出现 → Excel 中 Found 列标注为 开关
+# 如果在“降温 txt 文件”中出现 → 标注为 降温
+# 如果两个都出现 → 可按需求标注（比如写成 “开关+降温”）
+# 都不出现 → 留空或标注为 未找到
+
 ignore_last_char = True
 
 # 获取当前目录和文件路径
 base_dir = os.getcwd()
-data_dir = os.path.join(base_dir, 'data')
+data_dir = os.path.join(base_dir, 'D:\\devSpace\\product\\cardInfo\\')
 txt_file = os.path.join(data_dir, 'data_lt19.txt')
 excel_file = os.path.join(data_dir, 'data_lt19.xlsx')
 output_file = os.path.join(data_dir, 'output_with_flag.xlsx')
