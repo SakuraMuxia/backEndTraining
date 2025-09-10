@@ -1,11 +1,11 @@
-package com.ReflectPart;
+package com.ReflectPart.Test;
 
 import java.lang.reflect.Field;
 
 public class TestField1 {
     public static void main(String[] args) throws Exception {
         // 通过反射获取 类的Class对象
-        Class<?> aClass = Class.forName("com.ReflectPart.Vup");
+        Class<?> aClass = Class.forName("com.ReflectPart.Test.Vup");
         // 获取所有的已定义的字段对象 返回值为字段数组
         Field[] declaredFields = aClass.getDeclaredFields();
         // 遍历属性数组

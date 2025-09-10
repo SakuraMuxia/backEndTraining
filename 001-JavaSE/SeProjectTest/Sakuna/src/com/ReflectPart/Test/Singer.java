@@ -1,4 +1,4 @@
-package com.ReflectPart;
+package com.ReflectPart.Test;
 
 public class Singer {
     String name;

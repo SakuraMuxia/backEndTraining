@@ -13,14 +13,14 @@ import pandas as pd
 # 如果两个都出现 → 可按需求标注（比如写成 “开关+降温”）
 # 都不出现 → 留空或标注为 未找到
 
-ignore_last_char = True
+ignore_last_char = False
 
 # 获取当前目录和文件路径
 base_dir = os.getcwd()
 data_dir = os.path.join(base_dir, 'D:\\devSpace\\product\\cardInfo\\')
-txt_file = os.path.join(data_dir, 'data_lt19.txt')
-excel_file = os.path.join(data_dir, 'data_lt19.xlsx')
-output_file = os.path.join(data_dir, 'output_with_flag.xlsx')
+txt_file = os.path.join(data_dir, 'dianxin_card.txt')
+excel_file = os.path.join(data_dir, 'dianxin_data.xlsx')
+output_file = os.path.join(data_dir, 'output_result.xlsx')
 
 # 读取 txt 文件，保留字母，去空格和引号
 with open(txt_file, encoding='utf-8') as f:

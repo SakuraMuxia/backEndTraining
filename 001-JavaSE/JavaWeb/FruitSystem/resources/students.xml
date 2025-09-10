@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE students[
+        <!ELEMENT students (student*)>
+        <!ELEMENT student (sname ,age , address)>
+        <!ELEMENT sname (#PCDATA)>
+        <!ELEMENT age (#PCDATA)>
+        <!ELEMENT address (#PCDATA)>
+        <!ATTLIST student sid ID #REQUIRED>
+        <!ATTLIST student gid IDREF #IMPLIED>
+        ]>
+<students>
+    <student sid="s001">
+        <sname>jim</sname>
+        <age>18</age>
+        <address>USA</address>
+    </student>
+    <student sid="s002" gid="s001">
+        <sname>鸠摩智</sname>
+        <age>30</age>
+        <address>吐蕃</address>
+    </student>
+</students>

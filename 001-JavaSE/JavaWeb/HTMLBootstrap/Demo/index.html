@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bootstrap 4 本地示例</title>
+  <!-- 本地 Bootstrap 4 CSS -->
+  <link rel="stylesheet" href="css/bootstrap.css">
+</head>
+<body>
+  <div class="container mt-5">
+    <h1 class="text-primary">Hello, Bootstrap 4!</h1>
+
+    <!-- 按钮 + 弹出提示（需要 Popper.js 支持） -->
+    <button type="button" class="btn btn-warning" data-toggle="tooltip" data-placement="right" title="提示框内容">
+      鼠标移上我
+    </button>
+
+    <!-- jQuery 事件测试按钮 -->
+    <button class="btn btn-success mt-3" id="btn">点我试试</button>
+  </div>
+
+  <!-- 1. 先引入 jQuery -->
+  <script src="js/jquery-3.7.1.js"></script>
+  <!-- 2. 再引入 Popper.js（支持下拉菜单、提示框、Popover） -->
+  <script src="js/popper.min.js" ></script>
+  <!-- 3. 最后引入 Bootstrap 4 JS -->
+  <script src="js/bootstrap.min.js"></script>
+
+  <script>
+    // jQuery 事件测试
+    $("#btn").click(function () {
+      alert("jQuery 生效啦！");
+    });
+  </script>
+</body>
+</html>
+
