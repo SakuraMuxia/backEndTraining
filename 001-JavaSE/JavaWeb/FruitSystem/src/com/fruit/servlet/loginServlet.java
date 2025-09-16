@@ -4,6 +4,7 @@ import javax.servlet.GenericServlet;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
@@ -13,6 +14,7 @@ public class loginServlet extends GenericServlet {
     public void service(ServletRequest req, ServletResponse res) throws ServletException, IOException {
         // 1. 设置响应类型
         // 这里告诉浏览器返回的是文本内容，编码为UTF-8，避免中文乱码
+        req.setCharacterEncoding("utf-8");
         res.setContentType("text/html;charset=UTF-8");
 
         // 2 获取请求参数
@@ -27,7 +29,9 @@ public class loginServlet extends GenericServlet {
 
         // 5. 返回简单HTML响应
         if ("admin".equals(uname) && "123456".equals(pwd)) {
-            out.println("<h1>登录成功，欢迎：" + uname + "</h1>");
+            // 使用重定向，强转为 HttpServletResponse类型
+            HttpServletResponse httpRes = (HttpServletResponse) res;
+            httpRes.sendRedirect("index.html");
         } else {
             out.println("<h1>登录失败，请检查用户名或密码</h1>");
         }
