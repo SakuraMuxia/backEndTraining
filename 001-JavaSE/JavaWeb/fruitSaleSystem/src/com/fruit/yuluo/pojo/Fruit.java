@@ -67,7 +67,7 @@ public class Fruit {
                 "id=" + id +
                 ", fname='" + fname + '\'' +
                 ", price=" + price +
-                ", fcount=" + count +
+                ", count=" + count +
                 ", remark='" + remark + '\'' +
                 '}';
     }
