@@ -18,20 +18,19 @@ public class FruitDaoImpl extends BaseDao<Fruit> implements FruitDao {
     public void addFruit(Fruit fruit) {
         String sql = "insert into goods values(0,?,?,?,?)";
         int resRow = this.executeUpdate(sql, fruit.getFname(), fruit.getPrice(), fruit.getCount(), fruit.getRemark());
-        // 打印受影响行数
-        System.out.println("resRow = " + resRow);
     }
 
     @Override
     public void delFruit(Integer id) {
         String sql = "delete from goods where id = ?";
         int resRow = this.executeUpdate(sql, id);
-        System.out.println("resRow = " + resRow);
     }
 
     @Override
-    public Fruit getFruit(Integer id) {
-        return null;
+    public Fruit getFruitById(Integer id) {
+        String sql = "select * from goods where id = ?";
+        Fruit fruit = load(sql, id);
+        return fruit;
     }
 
     @Override
@@ -41,6 +40,7 @@ public class FruitDaoImpl extends BaseDao<Fruit> implements FruitDao {
 
     @Override
     public void updateFruit(Fruit fruit) {
-
+        String sql = "update goods set fname=?,price=?,count=?,remark=? where id=?";
+        executeUpdate(sql,fruit.getFname(),fruit.getPrice(),fruit.getCount(),fruit.getRemark(),fruit.getId());
     }
 }

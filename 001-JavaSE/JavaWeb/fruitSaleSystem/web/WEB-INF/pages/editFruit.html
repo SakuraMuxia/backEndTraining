@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>编辑水果</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 30px;
+    }
+    form {
+      max-width: 400px;
+      padding: 20px;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      background: #f9f9f9;
+    }
+    label {
+      display: block;
+      margin-top: 15px;
+    }
+    input, select, button {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      box-sizing: border-box;
+    }
+    button {
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      margin-top: 20px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+<h2>编辑水果</h2>
+
+<form th:action="@{/updateFruit}" method="post" th:object="${fruit}">
+  <!-- 隐藏id -->
+  <input type="hidden" name="id" th:value="*{id}">
+
+  <label>水果名称：</label>
+  <input type="text" name="fname" th:value="*{fname}" required>
+  <br>
+
+  <label>价格：</label>
+  <input type="number" name="price" th:value="*{price}" step="0.1" required>
+  <br>
+
+  <label>库存数量：</label>
+  <input type="number" name="count" th:value="*{count}" required>
+  <br>
+
+  <label>备注：</label>
+  <input type="text" name="remark" th:value="*{remark}">
+  <br>
+
+  <button type="submit">保存修改</button>
+  <button type="submit">取消</button>
+</form>
+
+</body>
+</html>

@@ -97,7 +97,7 @@ public abstract class BaseDao<T> {
         return 0;
     }
 
-    // 查询的方法
+    // 查询列表的方法
     protected List<T> executeQuery(String sql,Object ...params){
         List<T> list = new ArrayList<>();
         connection = DButil.getConnection();
@@ -138,5 +138,42 @@ public abstract class BaseDao<T> {
             DButil.close(connection,pstm,rs);
         }
         return list;
+    }
+
+    // 查询单个方法
+    protected T load(String sql,Object ...params){
+        // 获取连接
+        connection = DButil.getConnection();
+        try{
+            // 获取statement对象
+            pstm = connection.prepareStatement(sql);
+            // 设置SQL参数
+            setParams(pstm,params);
+            // 执行SQL
+            rs = pstm.executeQuery();
+            // 获取结果集的元数据，也就是每一行的数据
+            ResultSetMetaData metaData = rs.getMetaData();
+            // 获取元数据的列数
+            int columnCount = metaData.getColumnCount();
+            // 遍历结果集
+            if(rs.next()){
+                // 获取水果类的实体类
+                Class entityClass = ClassUtil.getEntityClass(entityClassName);
+                // 创建实例
+                T instance = (T)ClassUtil.createInstance(entityClassName);
+                // 给实例附属性
+                for(int i = 1 ; i<=columnCount;i++){
+                    //获取列明,其实我们故意将列名和属性名保持一致，就是为了此处的反射赋值
+                    String columnName = metaData.getColumnName(i);
+                    Object columnValue = rs.getObject(i);
+                    ClassUtil.setProperty(instance,columnName,columnValue);
+                }
+                // 把这个实例返回
+                return instance;
+            }
+        }catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return null;
     }
 }

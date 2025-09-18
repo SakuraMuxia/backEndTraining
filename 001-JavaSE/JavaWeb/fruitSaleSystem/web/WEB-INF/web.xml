@@ -25,7 +25,7 @@
         <url-pattern>/firstReq</url-pattern>
     </servlet-mapping>
     
-    <!--配置水果servlet-->
+    <!--水果列表页面 servlet-->
     <servlet>
         <servlet-name>fruitList</servlet-name>
         <servlet-class>com.fruit.yuluo.servlet.fruitServlet.fruitServlet</servlet-class>
@@ -33,5 +33,35 @@
     <servlet-mapping>
         <servlet-name>fruitList</servlet-name>
         <url-pattern>/fruitList</url-pattern>
+    </servlet-mapping>
+
+    <!--编辑水果页面 editFruit-->
+    <servlet>
+        <servlet-name>editFruit</servlet-name>
+        <servlet-class>com.fruit.yuluo.servlet.fruitServlet.editFruit</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>editFruit</servlet-name>
+        <url-pattern>/editFruit</url-pattern>
+    </servlet-mapping>
+    
+    <!-- 更新水果请求 -->
+    <servlet>
+        <servlet-name>updateFruit</servlet-name>
+        <servlet-class>com.fruit.yuluo.servlet.fruitServlet.updateFruit</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>updateFruit</servlet-name>
+        <url-pattern>/updateFruit</url-pattern>
+    </servlet-mapping>
+    
+    <!-- 删除水果请求 -->
+    <servlet>
+        <servlet-name>delFruit</servlet-name>
+        <servlet-class>com.fruit.yuluo.servlet.fruitServlet.delFruit</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>delFruit</servlet-name>
+        <url-pattern>/delFruit</url-pattern>
     </servlet-mapping>
 </web-app>

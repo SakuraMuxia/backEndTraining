@@ -14,7 +14,7 @@ public interface FruitDao {
     void delFruit(Integer id);
 
     // 获取指定的库存记录
-    Fruit getFruit(Integer id);
+    Fruit getFruitById(Integer id);
     Fruit getFruit(String name);
 
     // 修改库存记录
