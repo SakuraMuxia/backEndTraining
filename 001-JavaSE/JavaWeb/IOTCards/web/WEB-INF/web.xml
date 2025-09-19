@@ -3,4 +3,122 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
          version="4.0">
+    <context-param>
+        <param-name>view-prefix</param-name>
+        <param-value>/WEB-INF/view/</param-value>
+    </context-param>
+    <context-param>
+        <param-name>view-suffix</param-name>
+        <param-value>.html</param-value>
+    </context-param>
+    <!--降温电信-->
+    <servlet>
+        <servlet-name>cooltel</servlet-name>
+        <servlet-class>com.iot.yl.servlet.coolerServlet.CoolTeleCardServ</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>cooltel</servlet-name>
+        <url-pattern>/cooltel</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>exportCoolTele</servlet-name>
+        <servlet-class>com.iot.yl.servlet.ExportExcelServ.ExportCoolTeleCards</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>exportCoolTele</servlet-name>
+        <url-pattern>/exportCoolTel</url-pattern>
+    </servlet-mapping>
+    <!--降温联通-->
+    <servlet>
+        <servlet-name>cooluni</servlet-name>
+        <servlet-class>com.iot.yl.servlet.coolerServlet.CoolUniCardServ</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>cooluni</servlet-name>
+        <url-pattern>/cooluni</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>epCoolUni</servlet-name>
+        <servlet-class>com.iot.yl.servlet.ExportExcelServ.ExportCoolUniCards</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>epCoolUni</servlet-name>
+        <url-pattern>/exportCoolUni</url-pattern>
+    </servlet-mapping>
+
+    <!--降温移动-->
+    <servlet>
+        <servlet-name>coolmob</servlet-name>
+        <servlet-class>com.iot.yl.servlet.coolerServlet.CoolMobCardServ</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>coolmob</servlet-name>
+        <url-pattern>/coolmob</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>epCoolMob</servlet-name>
+        <servlet-class>com.iot.yl.servlet.ExportExcelServ.ExportCoolMobCards</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>epCoolMob</servlet-name>
+        <url-pattern>/exportCoolMob</url-pattern>
+    </servlet-mapping>
+
+    <!--开关电信-->
+    <servlet>
+        <servlet-name>swtel</servlet-name>
+        <servlet-class>com.iot.yl.servlet.swServlet.SwTelCardServ</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>swtel</servlet-name>
+        <url-pattern>/swtel</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>epSwTel</servlet-name>
+        <servlet-class>com.iot.yl.servlet.ExportExcelServ.ExportSwTelCards</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>epSwTel</servlet-name>
+        <url-pattern>/exportSwTel</url-pattern>
+    </servlet-mapping>
+    <!--开关联通-->
+    <servlet>
+        <servlet-name>swuni</servlet-name>
+        <servlet-class>com.iot.yl.servlet.swServlet.SwUniCardServ</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>swuni</servlet-name>
+        <url-pattern>/swuni</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>epSwUni</servlet-name>
+        <servlet-class>com.iot.yl.servlet.ExportExcelServ.ExportSwUniCards</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>epSwUni</servlet-name>
+        <url-pattern>/exportSwUni</url-pattern>
+    </servlet-mapping>
+    <!--开关移动-->
+    <servlet>
+        <servlet-name>swmob</servlet-name>
+        <servlet-class>com.iot.yl.servlet.swServlet.SwMobCardServ</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>swmob</servlet-name>
+        <url-pattern>/swmob</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>epSwMob</servlet-name>
+        <servlet-class>com.iot.yl.servlet.ExportExcelServ.ExportSwMobCards</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>epSwMob</servlet-name>
+        <url-pattern>/exportSwMob</url-pattern>
+    </servlet-mapping>
 </web-app>
