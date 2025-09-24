@@ -9,11 +9,30 @@
 </head>
 <body class="bg-light">
     <!-- 页面标题 -->
-    <h2 class="text-center mb-4">水果列表</h2>
+    <h2 class="text-center mb-2">水果列表</h2>
     <!-- 水果列表 -->
     <!-- 水果列表表格 -->
     <div class="container py-4 d-flex justify-content-center">
         <div class="card shadow-sm" style="width: 60%; background-color: #f5f7fa;">
+            <!-- 顶部操作栏 -->
+            <div class="d-flex justify-content-end h-5">
+                <!-- 搜索框 -->
+                <!-- 默认oper是list，调用list中的方法 -->
+                <form th:action="@{/fruit.do}" method="post" class="d-flex">
+                    <input type="hidden" name="operate" value="search"/>
+                    <input class="form-control form-control-sm"
+                           type="text"
+                           name="keyword"
+                           placeholder="输入名称搜索"
+                           th:value="${session.keyword}">
+                    <button class="btn btn-outline-success btn-sm" type="submit">搜索</button>
+                </form>
+                <!-- 添加按钮-使用pageServlet转发页面 -->
+                <a th:href="@{/page(page='newFruit')}" class="d-block btn btn-outline-success btn-sm d-flex flex-column">
+                    添加
+                </a>
+            </div>
+            <!-- 水果列表表格 -->
             <div class="card-header bg-success text-white">水果清单</div>
             <div class="card-body p-0">
                 <table class="table table-striped table-hover align-middle mb-0">
@@ -27,42 +46,64 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <!-- 遍历水果列表 这里默认使用请求域中数据 -->
-                    <!--
-                        th:each 表示准备迭代
-                        ${} 这是thymeleaf的语法，表示thymeleaf表达式
-                        session.key 相当于  session.getAttribute(key)
-                        :  冒号相当于增强for循环中的冒号  , fruit是临时变量
-                    -->
-                    <!--
-                        th:if  表示分支判断   对应的有 th:unless
-                        #lists 是一个公共的内置对象（工具类）
-                    -->
-                    <!--
-                         ${fruit.price}
-                         这里的.属性名  是一种语法，称之为OGNL语法 。 实际上是调用这个对象的属性的getter方法
-                         OGNL: Object Graphic Navigation Language   对象图导航语言
-                    -->
-                    <tr th:if="${not #lists.isEmpty(session.fruitList)}" th:each="fruit : ${session.fruitList}">
+                    <tr th:if="${not #lists.isEmpty(fruitList)}" th:each="fruit : ${fruitList}">
                         <td th:text="${fruit.id}"></td>
                         <td >
-                            <a style="text-decoration: none" th:href="@{editFruit(id=${fruit.id})}" th:text="${fruit.fname}"></a>
+                            <a style="text-decoration: none" th:href="@{/fruit.do(id=${fruit.id},oper='edit')}" th:text="${fruit.fname}"></a>
                         </td>
                         <td th:text="${fruit.price}"></td>
                         <td th:text="${fruit.count}"></td>
                         <td>
                             <!-- 删除按钮 -->
-                            <a th:href="@{/delFruit(id=${fruit.id})}"
+                            <a th:href="@{/fruit.do(id=${fruit.id},oper='del')}"
                                class="btn btn-danger btn-sm"
                                onclick="return confirm('确定要删除这个水果吗？');">删除</a>
                         </td>
                     </tr>
                     <!--空数据展示-->
-                    <tr th:unless="${not #lists.isEmpty(session.fruitList)}">
+                    <tr th:unless="${not #lists.isEmpty(fruitList)}">
                         <td colspan="5">对不起，库存为空！</td>
                     </tr>
                     </tbody>
                 </table>
+            </div>
+            <!-- 分页信息 -->
+            <div class="card-footer d-flex justify-content-between align-items-center">
+                <!-- 左侧显示总数 -->
+                <div>
+                    共 <span th:text="${totalCount}">0</span> 条记录，
+                    每页 <span th:text="${pageSize}">5</span> 条，
+                    共 <span th:text="${pageCount}">1</span> 页
+                </div>
+
+                <!-- 右侧分页按钮 -->
+                <div>
+                    <!-- 首页 -->
+                    <a th:href="@{/fruit.do(pageNo=1,oper='list')}"
+                       class="btn btn-outline-primary btn-sm"
+                       th:classappend="${pageNo == 1} ? ' disabled'">
+                        首页
+                    </a>
+                    <a class="btn btn-outline-secondary btn-sm me-1"
+                       th:if="${pageNo > 1}"
+                       th:href="@{/fruit.do(pageNo=${pageNo - 1},oper='list')}">
+                        上一页
+                    </a>
+                    <span class="btn btn-success btn-sm disabled">
+                        第 <span th:text="${pageNo}">1</span> 页
+                    </span>
+                    <a class="btn btn-outline-secondary btn-sm ms-1"
+                       th:if="${pageNo < pageCount}"
+                       th:href="@{/fruit.do(pageNo=${pageNo + 1})}">
+                        下一页
+                    </a>
+                    <!-- 尾页 -->
+                    <a th:href="@{/fruit.do(pageNo=${pageCount})}"
+                       class="btn btn-outline-primary btn-sm"
+                       th:classappend="${pageNo == pageCount} ? ' disabled'">
+                        尾页
+                    </a>
+                </div>
             </div>
         </div>
     </div>

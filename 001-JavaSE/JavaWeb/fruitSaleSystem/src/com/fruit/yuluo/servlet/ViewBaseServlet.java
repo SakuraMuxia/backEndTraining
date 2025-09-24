@@ -15,10 +15,10 @@ public class ViewBaseServlet extends HttpServlet {
 
     @Override
     public void init() throws ServletException {
-        // 初始化 Thymeleaf 模板解析器
+        // 初始化 Thymeleaf 模板解析器，这里用于解析Web.xml配置文件
         ServletContextTemplateResolver resolver =
                 new ServletContextTemplateResolver(this.getServletContext());
-
+        // 设置前缀和后缀
         resolver.setPrefix(getServletContext().getInitParameter("view-prefix"));
         resolver.setSuffix(getServletContext().getInitParameter("view-suffix"));
         resolver.setCharacterEncoding("utf-8");

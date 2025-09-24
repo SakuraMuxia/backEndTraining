@@ -74,6 +74,7 @@ public abstract class BaseDao<T> {
             }
             // 给sql语句传入参数
             setParams(pstm,params);
+
             // 执行sql
             int resRow = pstm.executeUpdate();
             // 返回
@@ -106,6 +107,7 @@ public abstract class BaseDao<T> {
              pstm = connection.prepareStatement(sql);
              // 设置SQL参数
             setParams(pstm,params);
+
             // 执行SQL
             rs = pstm.executeQuery();
             // 方式1：通过反射来处理
@@ -149,6 +151,7 @@ public abstract class BaseDao<T> {
             pstm = connection.prepareStatement(sql);
             // 设置SQL参数
             setParams(pstm,params);
+
             // 执行SQL
             rs = pstm.executeQuery();
             // 获取结果集的元数据，也就是每一行的数据
@@ -175,5 +178,44 @@ public abstract class BaseDao<T> {
             throw new RuntimeException(e);
         }
         return null;
+    }
+    // 查询复杂SQL的方法，此方法的返回值为List集合，List集合中存放的是Object类型的数组
+    protected List<Object[]> executeMathQuery(String sql, Object ...params){
+        List<Object[]> list = new ArrayList<>();
+        connection = DButil.getConnection();
+        try {
+            // 获取statement对象
+            pstm = connection.prepareStatement(sql);
+            // 设置SQL参数
+            setParams(pstm,params);
+
+            // 执行SQL
+            rs = pstm.executeQuery();
+            // 方式1：通过反射来处理
+            // 方式2：通过数据解析器来处理（见JDBC章节）
+            // 获取结果集的元数据，也就是每一行的数据
+            ResultSetMetaData metaData = rs.getMetaData();
+            // 获取元数据的列数
+            int columnCount = metaData.getColumnCount();
+            // 遍历结果集
+            while(rs.next()){
+                // 创建一个数组
+                Object[] arr = new Object[columnCount];
+                // 遍历
+                for (int i = 0; i < columnCount; i++) {
+                    // 获取当前行指定列的值
+                    Object columnValue = rs.getObject(i + 1);
+                    // 把当前行的值放在数组中
+                    arr[i] = columnValue;
+                }
+                // 集合中添加元素
+                list.add(arr);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }finally {
+            DButil.close(connection,pstm,rs);
+        }
+        return list;
     }
 }

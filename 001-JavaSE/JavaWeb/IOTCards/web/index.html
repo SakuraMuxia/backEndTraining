@@ -1,10 +1,53 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>首页</title>
+    <style>
+        body {
+            font-family: "Helvetica Neue", Arial, sans-serif;
+            background: #f4f6f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .container {
+            text-align: center;
+        }
+        h3 {
+            margin-bottom: 30px;
+            color: #333;
+        }
+        .link-btn {
+            display: inline-block;
+            margin: 8px;
+            padding: 12px 24px;
+            background-color: #4a90e2;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-size: 16px;
+            transition: background 0.3s;
+        }
+        .link-btn:hover {
+            background-color: #357ab8;
+        }
+    </style>
 </head>
 <body>
-  <h3>这里是首页</h3>
+<div class="container">
+    <h3>降温开关系统物联网卡使用情况</h3>
+    <div>
+        <a class="link-btn" href="http://192.168.1.38:8080/iotcards/cooluni" target="_blank">降温联通卡</a>
+        <a class="link-btn" href="http://192.168.1.38:8080/iotcards/cooltel" target="_blank">降温电信卡</a>
+        <a class="link-btn" href="http://192.168.1.38:8080/iotcards/coolmob" target="_blank">降温移动卡</a>
+        <a class="link-btn" href="http://192.168.1.38:8080/iotcards/swtel" target="_blank">开关电信卡</a>
+        <a class="link-btn" href="http://192.168.1.38:8080/iotcards/swuni" target="_blank">开关联通卡</a>
+        <a class="link-btn" href="http://192.168.1.38:8080/iotcards/swmob" target="_blank">开关移动卡</a>
+    </div>
+</div>
 </body>
 </html>

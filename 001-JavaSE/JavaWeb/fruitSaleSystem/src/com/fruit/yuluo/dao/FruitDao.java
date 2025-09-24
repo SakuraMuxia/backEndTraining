@@ -5,7 +5,12 @@ import java.util.List;
 
 public interface FruitDao {
     // 获取所有的库存记录
+    @Deprecated
     List<Fruit> getFruitList();
+    // 分页，检索，每页大小
+    List<Fruit> getFruitList(String keyword,Integer pageNo,Integer pageSize);
+    // 获取库存中的数量
+    Integer getTotalCount(String keyword);
 
     // 添加新库存
     void addFruit(Fruit fruit);

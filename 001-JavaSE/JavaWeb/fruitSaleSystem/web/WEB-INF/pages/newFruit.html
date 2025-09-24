@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>添加水果</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 30px;
+    }
+    form {
+      max-width: 400px;
+      padding: 20px;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      background: #f9f9f9;
+    }
+    label {
+      display: block;
+      margin-top: 15px;
+    }
+    input, select, button {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      box-sizing: border-box;
+    }
+    button {
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      margin-top: 20px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body class="bg-light">
+  <div class="container py-5">
+    <div class="card-body">
+      <h2 class="text-center mb-4">添加水果</h2>
+      <form th:action="@{/fruit.do(oper='add')}" method="post">
+        <!-- 水果名称 -->
+        <div class="mb-3">
+          <label class="form-label">水果名称：</label>
+          <input type="text" class="form-control" name="fname">
+        </div>
+        <!-- 价格 -->
+        <div class="mb-3">
+          <label class="form-label">价格：</label>
+          <input type="number" class="form-control" name="price" step="0.01">
+        </div>
+        <!-- 库存数量 -->
+        <div class="mb-3">
+          <label class="form-label">库存数量：</label>
+          <input type="number" class="form-control" name="count">
+        </div>
+        <!-- 备注 -->
+        <div class="mb-3">
+          <label class="form-label">备注：</label>
+          <input type="text" class="form-control" name="remark">
+        </div>
+        <!-- 操作按钮 -->
+        <div class="d-flex justify-content-between">
+          <button type="submit" class="btn btn-success">保存</button>
+          <button onclick="handleJumpList()" type="button">取消</button>
+        </div>
+      </form>
+    </div>
+  </div>
+<script>
+  const handleJumpList = () => {
+    // 方式2：如果你使用的是后端路由，比如 Spring Boot 的 /fruit/list
+    window.location.href = '/fruit/fruit.do';
+  }
+</script>
+</body>
+</html>

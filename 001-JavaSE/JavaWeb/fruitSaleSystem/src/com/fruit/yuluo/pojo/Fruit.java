@@ -13,6 +13,13 @@ public class Fruit {
     public Fruit() {
     }
 
+    public Fruit(String fname, BigDecimal price, Integer count, String remark) {
+        this.fname = fname;
+        this.price = price;
+        this.count = count;
+        this.remark = remark;
+    }
+
     public Fruit(Integer id, String fname, BigDecimal price, Integer count, String remark) {
         this.id = id;
         this.fname = fname;
