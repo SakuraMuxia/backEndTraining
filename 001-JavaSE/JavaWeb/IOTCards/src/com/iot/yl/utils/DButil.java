@@ -27,13 +27,15 @@ public class DButil {
             dataSource1.setUrl(prop.getProperty("db1.URL"));
             dataSource1.setUsername(prop.getProperty("db1.USER"));
             dataSource1.setPassword(prop.getProperty("db1.PWD"));
-
+            configDataSource(dataSource1, prop);
             // db2 配置
             dataSource2 = new DruidDataSource();
             dataSource2.setDriverClassName(prop.getProperty("db2.DRIVER"));
             dataSource2.setUrl(prop.getProperty("db2.URL"));
             dataSource2.setUsername(prop.getProperty("db2.USER"));
             dataSource2.setPassword(prop.getProperty("db2.PWD"));
+            configDataSource(dataSource2, prop);
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -57,5 +59,22 @@ public class DButil {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    // 配置数据库连接池
+    private static void configDataSource(DruidDataSource ds, Properties prop) {
+        ds.setInitialSize(Integer.parseInt(prop.getProperty("db.POOL.INITIAL_SIZE")));
+        ds.setMinIdle(Integer.parseInt(prop.getProperty("db.POOL.MIN_IDLE")));
+        ds.setMaxActive(Integer.parseInt(prop.getProperty("db.POOL.MAX_ACTIVE")));
+        ds.setMaxWait(Long.parseLong(prop.getProperty("db.POOL.MAX_WAIT")));
+        ds.setValidationQuery(prop.getProperty("db.POOL.VALIDATION_QUERY"));
+        ds.setTestOnBorrow(Boolean.parseBoolean(prop.getProperty("db.POOL.TEST_ON_BORROW")));
+        ds.setTestWhileIdle(Boolean.parseBoolean(prop.getProperty("db.POOL.TEST_WHILE_IDLE")));
+        ds.setTimeBetweenEvictionRunsMillis(
+                Long.parseLong(prop.getProperty("db.POOL.TIME_BETWEEN_EVICTION_RUNS_MILLIS")));
+        ds.setRemoveAbandoned(Boolean.parseBoolean(prop.getProperty("db.POOL.REMOVE_ABANDONED")));
+        ds.setRemoveAbandonedTimeout(
+                Integer.parseInt(prop.getProperty("db.POOL.REMOVE_ABANDONED_TIMEOUT")));
+        ds.setLogAbandoned(Boolean.parseBoolean(prop.getProperty("db.POOL.LOG_ABANDONED")));
     }
 }

@@ -103,6 +103,8 @@ public abstract class BaseDao<T> {
             }
         } catch (Exception e) {
             e.printStackTrace();
+        } finally {
+            DButil.close(connection,pstm,rs);
         }
         return count;
     }

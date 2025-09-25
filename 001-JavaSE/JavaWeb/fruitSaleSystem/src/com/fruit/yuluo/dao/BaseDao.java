@@ -176,6 +176,9 @@ public abstract class BaseDao<T> {
             }
         }catch (SQLException e) {
             throw new RuntimeException(e);
+        }finally {
+            // 关闭连接
+            DButil.close(connection,pstm,rs);
         }
         return null;
     }
