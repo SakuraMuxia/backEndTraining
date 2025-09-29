@@ -3,7 +3,7 @@ package com.fruit.yuluo.utils;
 import java.lang.reflect.Field;
 
 public class ClassUtil {
-    // 获取 Class对象
+    // 获取 Class对象 全限定名
     public static Class getEntityClass(String entityName){
         try {
             return Class.forName(entityName);

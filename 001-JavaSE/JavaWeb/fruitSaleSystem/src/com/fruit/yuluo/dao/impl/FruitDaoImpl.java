@@ -16,16 +16,20 @@ public class FruitDaoImpl extends BaseDao<Fruit> implements FruitDao {
 
     @Override
     public List<Fruit> getFruitList(String keyword, Integer pageNo, Integer pageSize) {
+        // 默认值处理
+        if (pageNo == null || pageNo < 1) {
+            pageNo = 1; // 默认第一页
+        }
+        if (pageSize == null || pageSize < 1) {
+            pageSize = 5; // 默认每页5条
+        }
         String sql = "select * from goods where fname like ? or remark like ? limit ? ,?";
-        System.out.println("keyword  = " + keyword );
-        System.out.println("pageNo = " + pageNo);
-        System.out.println("pageSize = " + pageSize);
         List<Fruit> fruits = this.executeQuery(sql,"%"+keyword+"%","%"+keyword+"%",(pageNo-1)*5,pageSize);
         return fruits;
     }
 
     @Override
-    public Integer getTotalCount(String keyword) {
+    public Integer getTotalNum(String keyword) {
         String sql = "select count(*) from goods where fname like ? or remark like ?";
         List<Object[]> list = this.executeMathQuery(sql,"%"+keyword+"%","%"+keyword+"%");
         // 获取第一列的数值，强转为Long类型，再转为Int类型
@@ -55,11 +59,6 @@ public class FruitDaoImpl extends BaseDao<Fruit> implements FruitDao {
         String sql = "select * from goods where id = ?";
         Fruit fruit = load(sql, id);
         return fruit;
-    }
-
-    @Override
-    public Fruit getFruit(String name) {
-        return null;
     }
 
     @Override

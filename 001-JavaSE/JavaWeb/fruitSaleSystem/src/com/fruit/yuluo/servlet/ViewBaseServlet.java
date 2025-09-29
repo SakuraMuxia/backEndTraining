@@ -13,6 +13,7 @@ import java.io.IOException;
 public class ViewBaseServlet extends HttpServlet {
     private TemplateEngine templateEngine;
 
+    //抽离的请求统一DispatcherServlet 这里的init方法不再被调用了，
     @Override
     public void init() throws ServletException {
         // 初始化 Thymeleaf 模板解析器，这里用于解析Web.xml配置文件

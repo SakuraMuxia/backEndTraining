@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE beans [
+    <!--定义元素根节点 * 一个或多个 -->
+    <!ELEMENT beans (bean*)>
+    <!--定义元素bean子节点 * 一个或多个 -->
+    <!ELEMENT bean (property*)>
+    <!--定义元素property节点 类型为字符串 -->
+    <!ELEMENT property (#PCDATA)>
+    <!--定义节点上的属性-->
+    <!ATTLIST bean id ID #REQUIRED>
+    <!ATTLIST bean class CDATA #REQUIRED>
+    <!ATTLIST property name CDATA #REQUIRED>
+    <!ATTLIST property ref IDREF #REQUIRED>
+]>
+
+<beans>
+    <!--bean:使用javaBean组件 定义每个接口的实现类位置 -->
+    <bean id="fruitDao" class="com.fruit.yuluo.dao.impl.FruitDaoImpl"></bean>
+    <bean id="fruitService" class="com.fruit.yuluo.service.impl.FruitServiceImpl" >
+        <!-- 声明FruitServiceImpl实现类中属性名 -->
+        <!-- FruitDao fruitDao = new FruitDaoImpl(); -->
+        <!-- ref 指向FruitDaoImpl实现类的bean标签的id -->
+        <property name="fruitDao" ref="fruitDao"></property>
+    </bean>
+    <bean id="fruit" class="com.fruit.yuluo.controller.FruitController">
+        <property name="fruitService" ref="fruitService"></property>
+    </bean>
+    <bean id="edit" class="com.fruit.yuluo.controller.FruitController">
+        <property name="fruitService" ref="fruitService"></property>
+    </bean>
+
+</beans>
