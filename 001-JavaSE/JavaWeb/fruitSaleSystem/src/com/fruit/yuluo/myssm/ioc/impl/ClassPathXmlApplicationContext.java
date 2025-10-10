@@ -63,6 +63,7 @@ public class ClassPathXmlApplicationContext implements BeanFactory {
 
                 }
             }
+            // 手写 IoC 容器中的“自动注入依赖”核心逻辑
             // 重新遍历 beanNodeList 节点
             for (int i = 0; i < beanNodeList.getLength(); i++) {
                 Node beanNode = beanNodeList.item(i);

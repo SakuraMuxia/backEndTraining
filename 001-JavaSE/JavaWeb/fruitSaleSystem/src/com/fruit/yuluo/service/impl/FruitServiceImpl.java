@@ -8,6 +8,8 @@ import java.util.List;
 
 public class FruitServiceImpl implements FruitService {
     // 创建FruitDao对象
+    // 经过BeanFactory自动注入后，
+    // 现在，FruitServiceImpl 的 fruitDao 成员已经不是 null，而是一个真正可用的 FruitDaoImpl 实例了。
     private FruitDao fruitDao;
 
     @Override

@@ -106,6 +106,7 @@ public class DispatcherServlet extends ViewBaseServlet {
                         // 存放参数值
                         parameterValueArr[j] = parameterValue;
                     }
+                    // 遍历参数值
                     for (Object o : parameterValueArr) {
                         System.out.println("o = " + o);
                     }

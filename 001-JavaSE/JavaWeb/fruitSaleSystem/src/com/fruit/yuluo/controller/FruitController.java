@@ -19,6 +19,9 @@ public class FruitController{
         <property name="fruitService" ref="fruitService"></property>
     </bean>
     * */
+    // 这里在 IOC的工厂工具类中 给 fruitService 设置了 实例对象
+    // 实现了 类似于FruitService fruitService = new FruitServiceImpl()的操作。
+    // 进行了解耦合
     private FruitService fruitService;
 
     // list方法
