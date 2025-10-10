@@ -1,4 +1,4 @@
-package com.fruit.yuluo.utils;
+package com.fruit.yuluo.myssm.utils;
 
 import com.alibaba.druid.pool.DruidDataSource;
 

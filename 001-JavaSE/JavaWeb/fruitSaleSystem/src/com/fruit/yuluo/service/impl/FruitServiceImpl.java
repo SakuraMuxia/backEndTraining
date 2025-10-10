@@ -1,9 +1,6 @@
 package com.fruit.yuluo.service.impl;
 
 import com.fruit.yuluo.dao.FruitDao;
-import com.fruit.yuluo.dao.impl.FruitDaoImpl;
-import com.fruit.yuluo.ioc.BeanFactory;
-import com.fruit.yuluo.ioc.impl.ClassPathXmlApplicationContext;
 import com.fruit.yuluo.pojo.Fruit;
 import com.fruit.yuluo.service.FruitService;
 

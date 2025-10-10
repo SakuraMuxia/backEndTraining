@@ -1,4 +1,4 @@
-package com.fruit.yuluo.servlet;
+package com.fruit.yuluo.myssm.servlet;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @WebServlet("/page")
-public class PageServlet extends ViewBaseServlet{
+public class PageServlet extends ViewBaseServlet {
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         // 获取请求page参数

@@ -1,9 +1,8 @@
 package com.fruit.yuluo.myssm.servlet;
 
-import com.fruit.yuluo.ioc.BeanFactory;
-import com.fruit.yuluo.ioc.impl.ClassPathXmlApplicationContext;
-import com.fruit.yuluo.servlet.ViewBaseServlet;
-import com.fruit.yuluo.utils.StringUtils;
+import com.fruit.yuluo.myssm.ioc.BeanFactory;
+import com.fruit.yuluo.myssm.ioc.impl.ClassPathXmlApplicationContext;
+import com.fruit.yuluo.myssm.utils.StringUtils;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

@@ -1,6 +1,6 @@
 package com.fruit.yuluo.dao.impl;
 
-import com.fruit.yuluo.dao.BaseDao;
+import com.fruit.yuluo.myssm.dao.BaseDao;
 import com.fruit.yuluo.dao.FruitDao;
 import com.fruit.yuluo.pojo.Fruit;
 

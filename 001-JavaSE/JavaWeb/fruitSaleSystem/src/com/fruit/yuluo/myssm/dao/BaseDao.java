@@ -1,7 +1,7 @@
-package com.fruit.yuluo.dao;
+package com.fruit.yuluo.myssm.dao;
 
-import com.fruit.yuluo.utils.ClassUtil;
-import com.fruit.yuluo.utils.DButil;
+import com.fruit.yuluo.myssm.utils.ClassUtil;
+import com.fruit.yuluo.myssm.utils.DButil;
 
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;

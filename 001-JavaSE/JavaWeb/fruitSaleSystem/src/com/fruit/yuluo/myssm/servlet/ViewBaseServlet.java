@@ -1,4 +1,4 @@
-package com.fruit.yuluo.servlet;
+package com.fruit.yuluo.myssm.servlet;
 
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.WebContext;

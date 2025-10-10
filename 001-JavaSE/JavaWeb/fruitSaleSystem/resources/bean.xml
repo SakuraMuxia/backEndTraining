@@ -25,6 +25,7 @@
     <bean id="fruit" class="com.fruit.yuluo.controller.FruitController">
         <property name="fruitService" ref="fruitService"></property>
     </bean>
+    <!--可省略，因为没有edit.do的请求-->
     <bean id="edit" class="com.fruit.yuluo.controller.FruitController">
         <property name="fruitService" ref="fruitService"></property>
     </bean>

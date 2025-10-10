@@ -2,7 +2,7 @@ package com.fruit.yuluo.controller;
 
 import com.fruit.yuluo.pojo.Fruit;
 import com.fruit.yuluo.service.FruitService;
-import com.fruit.yuluo.utils.StringUtils;
+import com.fruit.yuluo.myssm.utils.StringUtils;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
