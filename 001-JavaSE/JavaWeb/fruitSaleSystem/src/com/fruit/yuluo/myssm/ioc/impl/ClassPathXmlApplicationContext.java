@@ -30,11 +30,20 @@ public class ClassPathXmlApplicationContext implements BeanFactory {
         return beanMap.get(id);
     }
 
-    // 在构造方法中解析xml文件配置
+    // 无参构造中调用 bean.xml
     public ClassPathXmlApplicationContext() {
+        this("bean.xml");
+    }
+
+    // 在构造方法中解析xml文件配置
+    public ClassPathXmlApplicationContext(String configName){
         try {
             // 加载xml
-            InputStream in = this.getClass().getClassLoader().getResourceAsStream("bean.xml");
+            InputStream in = this.getClass().getClassLoader().getResourceAsStream(configName);
+            // 如果为空则抛异常
+            if (in == null){
+                throw new RuntimeException(configName + "找不到，或者非法！");
+            }
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
             DocumentBuilder builder = factory.newDocumentBuilder();
             // 获取doc对象
@@ -57,9 +66,9 @@ public class ClassPathXmlApplicationContext implements BeanFactory {
                     // 把这个实例对象存放在map集合中
                     beanMap.put(id,beanInstance); // {{"fruitDao": @xxcc},{"fruiService":@xxzz}}
                     /*
-                    *  {{"fruitDao":@xxcc},{"fruiService":@xxzz}}
-                    *
-                    * */
+                     *  {{"fruitDao":@xxcc},{"fruiService":@xxzz}}
+                     *
+                     * */
 
                 }
             }

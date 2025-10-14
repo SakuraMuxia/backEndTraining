@@ -3,14 +3,13 @@ package com.fruit.yuluo.myssm.utils;
 import com.alibaba.druid.pool.DruidDataSource;
 
 import java.io.InputStream;
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Properties;
 
-/*
-* 此工具类被 ConnUtil工具类 替代了
-* */
-
-public class DButil {
+public class ConnUtil {
     // 定义静态数据
     private static String DRIVER;
     private static String URL;
@@ -18,8 +17,9 @@ public class DButil {
     private static String PWD;
     // 定义静态的 数据库连接池对象
     private static DruidDataSource dataSource;
-
-    // 静态代码块，在类加载时读取配置
+    // 定义一个线程传送带对象
+    private static ThreadLocal<Connection> threadLocal = new ThreadLocal<>();
+    // 设置数据库连接池信息
     static {
         try {
             // 创建Properties Map集合类
@@ -56,27 +56,57 @@ public class DButil {
 
         } catch (Exception e) {
             e.printStackTrace();
+            throw new RuntimeException(e.getMessage());
         }
     }
 
-    // 获取连接,返回一个连接对象
-    public static Connection getConnection() {
+    // 创建连接对象
+    public static Connection createConnection() {
         try {
-           return dataSource.getConnection();
+            return dataSource.getConnection();
         } catch (SQLException e) {
             e.printStackTrace();
+            throw new RuntimeException(e.getMessage());
         }
-        return null;
     }
 
-    // 关闭连接
-    public static void close(Connection conn, Statement stmt, ResultSet rs) {
+    // 从线程传送带上获取连接对象
+    public static Connection getConnection(){
+        // 从线程传送带上获取工具
+        Connection connection = threadLocal.get();
+        // 如果不存在
+        if (connection == null){
+            // 创建一个connection对象
+            connection = createConnection();
+            // 放置在传送带上
+            threadLocal.set(connection);
+        }
+        return connection;
+    }
+
+    // 关闭连接对象
+    public static void closeConn(){
+        // 从传送带上取出
+        Connection connection = threadLocal.get();
+        if (connection != null){
+            // 关闭连接
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                throw new RuntimeException(e.getMessage());
+            }
+            threadLocal.set(null);
+        }
+    }
+
+    // 关闭流对象
+    public static void closeStream(Statement stmt,ResultSet rs) {
         try {
             if (rs != null) rs.close();
             if (stmt != null) stmt.close();
-            if (conn != null) conn.close();
         } catch (SQLException e) {
             e.printStackTrace();
+            throw new RuntimeException(e.getMessage());
         }
     }
 }

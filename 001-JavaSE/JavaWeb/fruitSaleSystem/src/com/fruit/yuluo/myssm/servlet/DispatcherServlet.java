@@ -2,8 +2,10 @@ package com.fruit.yuluo.myssm.servlet;
 
 import com.fruit.yuluo.myssm.ioc.BeanFactory;
 import com.fruit.yuluo.myssm.ioc.impl.ClassPathXmlApplicationContext;
+import com.fruit.yuluo.myssm.utils.IocUtil;
 import com.fruit.yuluo.myssm.utils.StringUtils;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -14,12 +16,25 @@ import java.lang.reflect.Parameter;
 
 @WebServlet("*.do")
 public class DispatcherServlet extends ViewBaseServlet {
+
+    private BeanFactory beanFactory;
     // 创建 bean 实例
-    private BeanFactory beanFactory = new ClassPathXmlApplicationContext();
+    // private BeanFactory beanFactory = new ClassPathXmlApplicationContext();
+    // 在 Listener 中创建实例
+    // 在 application 作用域中 获取 bean实例
+
+
+    @Override
+    public void init() throws ServletException {
+        super.init();//这句话不能省略。因为父类的初始化方法中也有操作，需要创建模板引擎对象
+        ServletContext ctx = this.getServletContext();
+        beanFactory = IocUtil.getBeanFactory(ctx);
+    }
+
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         // 统一设置请求头
-        req.setCharacterEncoding("UTF-8");
+        // req.setCharacterEncoding("UTF-8");
         // 获取URI
         // http://localhost/fruit.do?id=9&fname=apple&price=10
         // uri:/fruit.do 截取字符串得到 fruit.do

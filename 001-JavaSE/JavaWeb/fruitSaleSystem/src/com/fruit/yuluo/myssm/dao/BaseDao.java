@@ -1,7 +1,8 @@
 package com.fruit.yuluo.myssm.dao;
 
+import com.fruit.yuluo.myssm.exception.BaseDaoRunTimeException;
 import com.fruit.yuluo.myssm.utils.ClassUtil;
-import com.fruit.yuluo.myssm.utils.DButil;
+import com.fruit.yuluo.myssm.utils.ConnUtil;
 
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
@@ -62,7 +63,7 @@ public abstract class BaseDao<T> {
         // 设置标记是否是插入语句
         boolean insertFlag = sql.startsWith("INSERT INTO");
         // 获取连接对象
-        connection = DButil.getConnection();
+        connection = ConnUtil.getConnection();
 
         try {
             // 判断是否是插入语句
@@ -90,10 +91,12 @@ public abstract class BaseDao<T> {
                 return resRow; // 返回默认受影响行数
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            // e.printStackTrace();
+            // 向外抛出异常
+            throw new BaseDaoRunTimeException(e.getMessage());
         } finally {
-            // 关闭连接
-            DButil.close(connection,pstm,rs);
+            // 关闭流
+            ConnUtil.closeStream(pstm,rs);
         }
         return 0;
     }
@@ -101,7 +104,7 @@ public abstract class BaseDao<T> {
     // 查询列表的方法
     protected List<T> executeQuery(String sql,Object ...params){
         List<T> list = new ArrayList<>();
-        connection = DButil.getConnection();
+        connection = ConnUtil.getConnection();
         try {
             // 获取statement对象
              pstm = connection.prepareStatement(sql);
@@ -136,8 +139,12 @@ public abstract class BaseDao<T> {
             }
         } catch (Exception e) {
             e.printStackTrace();
+            throw new BaseDaoRunTimeException(e.getMessage());
         }finally {
-            DButil.close(connection,pstm,rs);
+            // 老版本关闭流
+            // DButil.close(connection,pstm,rs);
+            // 使用事务
+            ConnUtil.closeStream(pstm,rs);
         }
         return list;
     }
@@ -145,7 +152,7 @@ public abstract class BaseDao<T> {
     // 查询单个方法
     protected T load(String sql,Object ...params){
         // 获取连接
-        connection = DButil.getConnection();
+        connection = ConnUtil.getConnection();
         try{
             // 获取statement对象
             pstm = connection.prepareStatement(sql);
@@ -175,17 +182,19 @@ public abstract class BaseDao<T> {
                 return instance;
             }
         }catch (SQLException e) {
+            e.printStackTrace();
             throw new RuntimeException(e);
+
         }finally {
             // 关闭连接
-            DButil.close(connection,pstm,rs);
+            ConnUtil.closeStream(pstm,rs);
         }
         return null;
     }
     // 查询复杂SQL的方法，此方法的返回值为List集合，List集合中存放的是Object类型的数组
     protected List<Object[]> executeMathQuery(String sql, Object ...params){
         List<Object[]> list = new ArrayList<>();
-        connection = DButil.getConnection();
+        connection = ConnUtil.getConnection();
         try {
             // 获取statement对象
             pstm = connection.prepareStatement(sql);
@@ -216,8 +225,9 @@ public abstract class BaseDao<T> {
             }
         } catch (Exception e) {
             e.printStackTrace();
+            throw new BaseDaoRunTimeException(e.getMessage());
         }finally {
-            DButil.close(connection,pstm,rs);
+            ConnUtil.closeStream(pstm,rs);
         }
         return list;
     }

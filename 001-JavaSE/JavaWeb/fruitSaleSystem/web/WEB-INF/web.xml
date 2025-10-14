@@ -14,4 +14,33 @@
         <param-name>view-suffix</param-name>
         <param-value>.html</param-value>
     </context-param>
+
+    <!--filter配置类似Servlet配置-->
+    <filter>
+        <filter-name>CharacterEncodingFilter</filter-name>
+        <filter-class>com.fruit.yuluo.myssm.filter.CharacterEncodingFilter</filter-class>
+        <!--配置初始化参数-->
+        <init-param>
+            <param-name>encoding</param-name>
+            <param-value>UTF-8</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>CharacterEncodingFilter</filter-name>
+        <url-pattern>*.do</url-pattern>
+    </filter-mapping>
+    <!--这里有顺序，过滤器链，应该先执行上边的，再执行下边的-->
+    <filter>
+        <filter-name>OpenSessionViewFilter</filter-name>
+        <filter-class>com.fruit.yuluo.myssm.filter.OpenSessionViewFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>OpenSessionViewFilter</filter-name>
+        <url-pattern>*.do</url-pattern>
+    </filter-mapping>
+    <!--配置初始化参数-->
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value></param-value>
+    </context-param>
 </web-app>
