@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>QQZone - 首页</title>
+    <link rel="stylesheet" th:href="@{static/css/common.css}">
+    <link rel="stylesheet" th:href="@{static/css/index.css}">
+</head>
+<body>
+<div class="layout">
+    <!-- 顶部 -->
+    <iframe class="frame-top" th:src="@{/page(page='frames/top')}"  frameborder="0"></iframe>
+    <!-- 主体 -->
+    <div class="frame-body">
+        <iframe class="frame-left" th:src="@{/page(page='frames/left')}" frameborder="0"></iframe>
+        <!-- 主内容区 -->
+        <iframe class="frame-main" th:src="@{/page(page='frames/main')}" frameborder="0"></iframe>
+    </div>
+    <!-- 底部版权栏 -->
+    <iframe class="frame-bottom" th:src="@{/page(page='frames/bottom')}" frameborder="0"></iframe>
+</div>
+</body>
+</html>

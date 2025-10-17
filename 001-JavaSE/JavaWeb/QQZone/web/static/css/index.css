@@ -1,0 +1,37 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: "Microsoft YaHei", sans-serif;
+}
+
+.layout {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.frame-top {
+    height: 100px;
+    width: 100%;
+}
+
+.frame-body {
+    flex: 1;
+    display: flex;
+}
+
+.frame-left {
+    width: 220px;
+    border-right: 1px solid #ccc;
+}
+
+.frame-main {
+    flex: 1;
+}
+
+.frame-bottom {
+    height: 40px;
+    width: 100%;
+    border-top: 1px solid #ddd;
+}

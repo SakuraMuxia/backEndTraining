@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>日志详情</title>
+    <link rel="stylesheet" th:href="@{/static/css/common.css}">
+    <link rel="stylesheet" th:href="@{/static/css/detail.css}">
+    <style>
+        body { margin: 0; font-size: 14px; background: #f9fafc; }
+        #div_back_to_topic_list { padding: 10px; }
+        #div_topic_detail { padding: 10px; background: #fff; margin: 10px; border-radius: 6px; }
+        #div_topic_detail table { width: 100%; border-collapse: collapse; }
+        #div_topic_detail td { padding: 6px; vertical-align: top; }
+        .topic_title { font-weight: bold; font-size: 16px; }
+        .title_date_right { float: right; font-size: 12px; color: #999; }
+        .tbl_reply_info { width: 100%; margin-top: 10px; border-collapse: collapse; }
+        .tbl_reply_info td { padding: 6px; border-bottom: 1px dotted #ccc; }
+        #div_add_reply { padding: 10px; margin-top: 10px; background: #fff; border-radius: 6px; }
+        #div_add_reply textarea { width: 100%; }
+        #div_add_reply input[type="text"] { width: 100%; }
+    </style>
+    <script>
+        function showDelImg(imgId) { document.getElementById(imgId).style.display='inline'; }
+        function hiddenDelImg(imgId) { document.getElementById(imgId).style.display='none'; }
+    </script>
+</head>
+<body>
+
+<div id="div_back_to_topic_list">
+    <a href="main.html">返回日志列表</a>
+</div>
+
+<div id="div_topic_detail">
+    <table>
+        <tr>
+            <td rowspan="2" style="width:80px;">
+                <img style="width:64px;height:64px;"/>
+                <div >昵称</div>
+            </td>
+            <td class="topic_title" onmousemove="showDelImg('img01')" onmouseout="hiddenDelImg('img01')">
+                <span >日志标题</span>
+                <span class="title_date_right" >2021-09-01 12:30:55</span>
+                <img id="img01"  style="display:none;width:20px;height:20px;float:right;"/>
+            </td>
+        </tr>
+        <tr>
+            <td >日志内容</td>
+        </tr>
+    </table>
+
+    <!-- 回复列表 -->
+    <div id="div_reply_list">
+        <table class="tbl_reply_info">
+            <tr>
+                <td rowspan="2" style="width:80px;">
+                    <img  style="width:48px;height:48px;"/>
+                    <div >回复人</div>
+                </td>
+                <td>
+                    <span >回复内容</span>
+                    <span class="title_date_right" >2021-09-01 14:35:15</span>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- 添加回复 -->
+    <div id="div_add_reply">
+        <p>添加回复</p>
+        <form action="" method="post">
+            <textarea rows="3" placeholder="请输入回复内容"></textarea><br/>
+            <input type="submit" value="回复"/>
+            <input type="reset" value="重置"/>
+        </form>
+    </div>
+</div>
+</body>
+</html>

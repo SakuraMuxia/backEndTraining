@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>日志列表</title>
+    <link rel="stylesheet" th:href="@{/static/css/common.css}">
+    <style>
+        body { margin: 0; background: #f9fafc; font-size: 14px; }
+        #topic-list { padding: 10px; }
+        #topic-list table { width: 100%; border-collapse: collapse; }
+        #topic-list th, #topic-list td { padding: 6px 8px; border-bottom: 1px solid #eee; }
+        #topic-list a { color: #409eff; }
+    </style>
+</head>
+<body>
+<div id="topic-list">
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>标题</th>
+            <th>日期</th>
+            <th>操作</th>
+        </tr>
+        <tr >
+            <td >1</td>
+            <td><a >日志标题</a></td>
+            <td >2021-09-01 12:30:55</td>
+            <td><a href="#">删除</a></td>
+        </tr>
+        <tr >
+            <td colspan="4">暂无日志</td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>
