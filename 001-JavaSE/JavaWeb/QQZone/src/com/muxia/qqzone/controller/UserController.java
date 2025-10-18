@@ -18,7 +18,7 @@ public class UserController {
         if (userBasic != null){
             // userBasic这个key用来代表登陆者
             session.setAttribute("userBasic",userBasic);
-            return PAGE_INDEX;
+            return LOGIN_SUCC;
         }else{
             System.out.println("登陆失败"+userBasic);
             return LOGIN_FAIL;

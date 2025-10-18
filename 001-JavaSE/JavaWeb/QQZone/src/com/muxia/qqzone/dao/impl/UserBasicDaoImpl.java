@@ -2,7 +2,7 @@ package com.muxia.qqzone.dao.impl;
 
 import com.muxia.qqzone.dao.UserBasicDao;
 import com.muxia.qqzone.pojo.UserBasic;
-import com.fruit.yuluo.myssm.dao.BaseDao;
+import com.muxia.qqzone.myssm.dao.BaseDao;
 
 public class UserBasicDaoImpl extends BaseDao<UserBasic> implements UserBasicDao {
     @Override
