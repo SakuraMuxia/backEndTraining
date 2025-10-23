@@ -18,13 +18,18 @@
     <bean id="userBasicDao" class="com.muxia.qqzone.dao.impl.UserBasicDaoImpl"/>
     <bean id="topicDao" class="com.muxia.qqzone.dao.impl.TopicDaoImpl"/>
     <bean id="replyDao" class="com.muxia.qqzone.dao.impl.ReplyDaoImpl"/>
+    <bean id="hostReplyDao" class="com.muxia.qqzone.dao.impl.HostReplyDaoImpl"/>
     <!--2. Service配置 -->
     <bean id="userBasicService" class="com.muxia.qqzone.service.impl.UserBasicServiceImpl">
         <property name="userBasicDao" ref="userBasicDao"/>
     </bean>
+    <bean id="hostReplyService" class="com.muxia.qqzone.service.impl.HostReplyServiceImpl">
+        <property name="hostReplyDao" ref="hostReplyDao"/>
+    </bean>
     <bean id="replyService" class="com.muxia.qqzone.service.impl.ReplyServiceImpl">
         <property name="replyDao" ref="replyDao"/>
         <property name="userBasicDao" ref="userBasicDao"/>
+        <property name="hostReplyService" ref="hostReplyService"/>
     </bean>
     <bean id="topicService" class="com.muxia.qqzone.service.impl.TopicServiceImpl">
         <property name="topicDao" ref="topicDao"/>
