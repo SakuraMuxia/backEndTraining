@@ -1,5 +1,6 @@
 package com.muxia.qqzone.pojo;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 /*
 * 别人回复铁子表
@@ -9,7 +10,7 @@ public class Reply {
 
     private Integer id ;
     private String content ;
-    private Date replyDate ;
+    private LocalDateTime replyDate ;
     // 与 基本信息表 多 对 1 关系
     private UserBasic author ;  //M:1
     // 与 话题表 多 对 1 关系
@@ -18,6 +19,10 @@ public class Reply {
     private HostReply hostReply ;
 
     public Reply() {
+    }
+
+    public Reply(Integer id) {
+        this.id = id;
     }
 
     public Integer getId() {
@@ -36,11 +41,11 @@ public class Reply {
         this.content = content;
     }
 
-    public Date getReplyDate() {
+    public LocalDateTime getReplyDate() {
         return replyDate;
     }
 
-    public void setReplyDate(Date replyDate) {
+    public void setReplyDate(LocalDateTime replyDate) {
         this.replyDate = replyDate;
     }
 

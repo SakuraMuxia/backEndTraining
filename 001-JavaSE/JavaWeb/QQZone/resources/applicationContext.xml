@@ -16,14 +16,29 @@
 <beans>
     <!--1. DAO配置 -->
     <bean id="userBasicDao" class="com.muxia.qqzone.dao.impl.UserBasicDaoImpl"/>
-
+    <bean id="topicDao" class="com.muxia.qqzone.dao.impl.TopicDaoImpl"/>
+    <bean id="replyDao" class="com.muxia.qqzone.dao.impl.ReplyDaoImpl"/>
     <!--2. Service配置 -->
     <bean id="userBasicService" class="com.muxia.qqzone.service.impl.UserBasicServiceImpl">
         <property name="userBasicDao" ref="userBasicDao"/>
+    </bean>
+    <bean id="replyService" class="com.muxia.qqzone.service.impl.ReplyServiceImpl">
+        <property name="replyDao" ref="replyDao"/>
+        <property name="userBasicDao" ref="userBasicDao"/>
+    </bean>
+    <bean id="topicService" class="com.muxia.qqzone.service.impl.TopicServiceImpl">
+        <property name="topicDao" ref="topicDao"/>
+        <property name="userBasicService" ref="userBasicService"/>
+        <property name="replyService" ref="replyService"/>
     </bean>
 
     <!--3. Controller配置 -->
     <bean id="user" class="com.muxia.qqzone.controller.UserController">
         <property name="userBasicService" ref="userBasicService"/>
+        <property name="topicService" ref="topicService"/>
+    </bean>
+    <bean id="topic" class="com.muxia.qqzone.controller.TopicController">
+        <property name="userBasicService" ref="userBasicService"/>
+        <property name="topicService" ref="topicService"/>
     </bean>
 </beans>

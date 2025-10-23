@@ -146,7 +146,7 @@ public class DispatcherServlet extends ViewBaseServlet {
 
                 } catch (Exception e) {
                     e.printStackTrace();
-                    throw new RuntimeException("未找到"+oper+"方法");
+                    throw new RuntimeException("未找到"+oper+"方法,或执行方法报错");
                 }
             }
         }

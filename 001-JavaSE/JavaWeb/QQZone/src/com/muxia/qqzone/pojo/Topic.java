@@ -1,6 +1,6 @@
 package com.muxia.qqzone.pojo;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.List;
 
 /*
@@ -8,16 +8,19 @@ import java.util.List;
 * */
 public class Topic {
     private Integer id;
-    private String title ;
-    private String content ;
-    private Date topicDate ;
+    private String title;
+    private String content;
+    private LocalDateTime topicDate;
     // 与 基本信息表 多对1关系
-    private UserBasic author ;
+    private UserBasic author;
     // 与 回复表 1对多关系
     private List<Reply> replyList;
 
     public Topic(){}
 
+    public Topic(Integer id){
+        this.id = id;
+    }
     public Integer getId() {
         return id;
     }
@@ -42,11 +45,11 @@ public class Topic {
         this.content = content;
     }
 
-    public Date getTopicDate() {
+    public LocalDateTime getTopicDate() {
         return topicDate;
     }
 
-    public void setTopicDate(Date topicDate) {
+    public void setTopicDate(LocalDateTime topicDate) {
         this.topicDate = topicDate;
     }
 

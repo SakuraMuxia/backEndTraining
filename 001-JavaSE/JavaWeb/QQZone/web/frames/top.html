@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        body { margin: 0; font-family: "Segoe UI", sans-serif; }
+        .top-bar {
+            background: linear-gradient(90deg, #6c5ce7, #00b894);
+            height: 118px;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+        }
+        .nav a {
+            margin: 0 10px;
+            color: #fff;
+            text-decoration: none;
+        }
+        .nav a:hover { text-decoration: underline; }
+    </style>
+    <script src="/qqzone/js/frame-util.js"></script>
+</head>
+<body>
+<div class="top-bar">
+    <div class="logo">QQZone</div>
+    <div class="nav">
+        <a href="#">主页</a>
+        <a href="#">好友</a>
+        <a href="#">消息</a>
+        <a href="#">设置</a>
+    </div>
+    <div class="user-info">
+        <span th:text="|欢迎来到 ${session.userBasic.nickName} 的空间|">欢迎来到我的空间</span>
+        <a href="javascript:void(0);"
+           th:onclick="'openMyZone(' + ${session.userBasic.id} + ')'">我的空间</a>
+    </div>
+</div>
+</body>
+</html>

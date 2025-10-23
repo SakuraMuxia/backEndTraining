@@ -1,0 +1,41 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>QQzone</title>
+    <link rel="stylesheet" th:href="@{/css/qqzone-iframe.css}">
+</head>
+<body>
+<!-- 顶部 -->
+    <div id="div_top">
+        <iframe id="iframeTop" th:src="@{/page(page='frames/top')}" width="100%" frameborder="0" scrolling="no"></iframe>
+    </div>
+<!-- 主体区域 -->
+<div class="main-area">
+    <!-- 左侧菜单 -->
+    <div id="div_left">
+        <iframe id="iframeLeft" th:src="@{/page(page='frames/left')}" width="200px" height="100%" frameborder="0" scrolling="no"></iframe>
+    </div>
+    <!-- 主内容区 -->
+    <div id="div_main">
+        <iframe id="iframeMain"
+                th:src="@{/page(page='frames/main')}"
+                frameborder="0"
+                width="100%"
+                scrolling="no"
+                onload="resizeIframe(this)">
+        </iframe>
+    </div>
+</div>
+<script>
+    <!--窗口自适应-->
+    function resizeIframe(iframe) {
+        try {
+            const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+            iframe.style.height = iframeDoc.body.scrollHeight + 'px';
+        } catch (e) {
+            console.error(e);
+        }
+    }
+</script>
+</body>
+</html>

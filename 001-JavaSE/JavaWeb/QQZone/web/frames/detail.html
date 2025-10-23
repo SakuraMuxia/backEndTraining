@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" th:href="@{/css/detail.css}">
+</head>
+<body>
+<div class="detail-container" th:object="${session.topic}">
+  <!-- 主人信息 -->
+  <div class="owner-info">
+    <img th:src="*{author.headImg}" alt="头像" class="owner-avatar"/>
+    <div class="owner-meta">
+      <div class="owner-name" th:text="*{author.nickName}">张三</div>
+      <div class="post-time" th:text="*{topicDate}">2025-10-23 10:20</div>
+    </div>
+  </div>
+
+  <!-- 动态正文 -->
+  <div class="topic-content">
+    <h2 th:text="*{title}">标题</h2>
+    <p th:text="*{content}">这是动态的正文内容。</p>
+  </div>
+
+  <hr>
+
+  <!-- 评论区 -->
+  <div class="comment-section">
+    <h3>好友回复</h3>
+
+    <!-- 评论内容区域 -->
+    <div class="comment-list">
+      <div class="comment-item" th:each="reply : *{replyList}" th:object="${reply}">
+        <!-- 评论者信息 -->
+        <div class="comment-header">
+          <img th:src="*{author.headImg}" alt="头像" class="friend-avatar"/>
+          <span class="comment-user" th:text="*{author.nickName}">李四</span>
+          <span class="comment-time" th:text="*{replyDate}">2025-10-23 10:40</span>
+        </div>
+
+        <!-- 评论内容 -->
+        <div class="comment-content" th:text="*{content}">很棒的动态！</div>
+
+        <!-- ========================== -->
+        <!-- 如果主人有回复 -->
+        <!-- ========================== -->
+        <div th:if="*{ownerReply != null}" class="owner-reply-box">
+      <span class="owner-reply-meta">
+        <b th:text="*{owner.nickName}">张三</b> 回复
+        <b th:text="*{author.nickName}">李四</b>：
+      </span>
+          <span class="owner-reply-content" th:text="*{ownerReply.content}">
+        谢谢你的支持！
+      </span>
+          <span class="comment-time" th:text="*{ownerReply.replyDate}">2025-10-23 11:00</span>
+        </div>
+
+        <!-- ========================== -->
+        <!-- 如果主人还没回复，显示回复按钮 -->
+        <!-- ========================== -->
+        <div th:if="*{ownerReply == null}" class="comment-actions">
+          <button class="btn-reply" th:onclick="'showReplyBox(' + *{id} + ')'">回复</button>
+        </div>
+
+        <!-- 主人回复输入框 -->
+        <div class="reply-box" th:id="'replyBox-' + *{id}" style="display: none;">
+          <textarea placeholder="输入回复..." class="reply-text"></textarea>
+          <button class="btn-send">发送</button>
+        </div>
+
+      </div>
+
+      <!-- 新评论输入框 -->
+      <div class="new-comment">
+        <textarea placeholder="写下你的评论..." name="content"></textarea>
+        <button class="btn-send">发表评论</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  function showReplyBox(replyId) {
+    const box = document.getElementById("replyBox-" + replyId);
+    box.style.display = box.style.display === "none" ? "block" : "none";
+  }
+</script>
+</body>
+</html>

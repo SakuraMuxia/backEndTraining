@@ -1,6 +1,7 @@
 package com.muxia.qqzone.pojo;
 
 import java.sql.Date;
+import java.time.LocalDateTime;
 
 /*
 * 用户-详情
@@ -10,10 +11,14 @@ public class UserDetail {
     private String realName ;
     private String tel ;
     private String email ;
-    private Date birth ; // 这里使用sql包中的Date，只有年月日即可
+    private LocalDateTime birth ; // 这里使用sql包中的Date，只有年月日即可
     private String star ;
 
     public UserDetail(){}
+
+    public UserDetail(Integer id) {
+        this.id = id;
+    }
 
     public Integer getId() {
         return id;
@@ -47,11 +52,11 @@ public class UserDetail {
         this.email = email;
     }
 
-    public Date getBirth() {
+    public LocalDateTime getBirth() {
         return birth;
     }
 
-    public void setBirth(Date birth) {
+    public void setBirth(LocalDateTime birth) {
         this.birth = birth;
     }
 

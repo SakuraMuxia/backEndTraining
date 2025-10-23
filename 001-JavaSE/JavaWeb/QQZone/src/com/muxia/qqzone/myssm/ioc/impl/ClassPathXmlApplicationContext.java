@@ -100,7 +100,7 @@ public class ClassPathXmlApplicationContext implements BeanFactory {
                             Object refObj = beanMap.get(propertyRef); // 这里取出来的是 @xxcc 实例
                             // 将refObj赋值给bean的 propertyName 属性
                             // 给fruitService实例（@xxzz）中添加了 fruitDao 属性，并指定属性的指向为 FruitDao的实例（@xxcc）
-                            ClassUtil.setProperty(bean,propertyName,refObj);
+                            ClassUtil.setSimpleProperty(bean,propertyName,refObj);
                             // 相当于在FruitService类中执行了 FruitDao fruitDao = new FruitDaoImpl()
                         }
                     }

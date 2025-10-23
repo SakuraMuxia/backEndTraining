@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>用户登录</title>
+    <link rel="stylesheet" th:href="@{/css/login.css}">
+</head>
+<body>
+<div class="login-container">
+    <h2>用户登录</h2>
+    <form th:action="@{/user.do}" method="post">
+        <input type="hidden" name="oper" value="login"/>
+
+        <label for="loginId">用户名</label>
+        <input type="text" id="loginId" name="loginId" value="u0001" placeholder="请输入用户名"/>
+
+        <label for="pwd">密码</label>
+        <input type="password" id="pwd" name="pwd" value="123456" placeholder="请输入密码"/>
+
+        <button type="submit">登录</button>
+    </form>
+
+    <div class="login-footer">
+        <span>还没有账号？ <a href="/register">立即注册</a></span>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,26 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+.main-area {
+    display: flex;
+    flex: 1;
+    min-height: calc(100vh - 118px - 50px); /* 顶部 + 底部高度 */
+}
+
+#div_left {
+    width: 200px;
+}
+
+#div_main {
+    flex: 1;
+}
+
+/* iframe 样式统一 */
+iframe {
+    width: 100%;
+    border: none;
+    display: block;
+}

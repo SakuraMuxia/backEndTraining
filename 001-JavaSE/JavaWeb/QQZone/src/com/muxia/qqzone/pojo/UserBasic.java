@@ -20,6 +20,10 @@ public class UserBasic {
     // 与 好友表 多对多关系
     private List<UserBasic> friendList;
 
+    public UserBasic(Integer id) {
+        this.id = id;
+    }
+
     public UserBasic(){};
 
     public Integer getId() {
