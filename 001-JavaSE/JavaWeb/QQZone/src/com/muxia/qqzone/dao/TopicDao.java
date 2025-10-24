@@ -10,4 +10,8 @@ public interface TopicDao {
     List<Topic> getTopicList(UserBasic userBasic);
     // 获取 topic 数据 通过id
     Topic getTopicById(Integer id);
+
+    void addTopic(Topic topic);
+
+    void delTopic(Integer id);
 }

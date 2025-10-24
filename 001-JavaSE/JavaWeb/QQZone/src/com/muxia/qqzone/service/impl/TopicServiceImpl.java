@@ -37,4 +37,18 @@ public class TopicServiceImpl implements TopicService {
         topic.setReplyList(replyList);
         return topic;
     }
+
+    @Override
+    public void addTopic(Topic topic) {
+        topicDao.addTopic(topic);
+    }
+
+    @Override
+    public void delTopic(Integer id) {
+        //1.删除关联的回复信息
+        replyService.delReplyByTopicId(id);
+
+        //2.删除日志信息
+        topicDao.delTopic(id);
+    }
 }

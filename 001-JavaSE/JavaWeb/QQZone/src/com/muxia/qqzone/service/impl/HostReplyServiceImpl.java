@@ -10,4 +10,14 @@ public class HostReplyServiceImpl implements HostReplyService {
     public HostReply getHostReplyByReplyId(Integer replyId) {
         return hostReplyDao.getHostReplyByReplyId(replyId);
     }
+
+    @Override
+    public void addHostReply(HostReply hostReply) {
+        hostReplyDao.addHostReply(hostReply);
+    }
+
+    @Override
+    public void delHostReplyByReplyId(Integer replyId) {
+        hostReplyDao.delHostReplyByReplyId(replyId);
+    }
 }

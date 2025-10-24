@@ -46,4 +46,10 @@
         <property name="userBasicService" ref="userBasicService"/>
         <property name="topicService" ref="topicService"/>
     </bean>
+    <bean id="reply" class="com.muxia.qqzone.controller.ReplyController">
+        <property name="replyService" ref="replyService"/>
+    </bean>
+    <bean id="hostReply" class="com.muxia.qqzone.controller.HostReplyController">
+        <property name="hostReplyService" ref="hostReplyService"/>
+    </bean>
 </beans>

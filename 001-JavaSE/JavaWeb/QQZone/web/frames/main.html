@@ -123,7 +123,9 @@
       <td th:text="${topic.title}"
         th:onclick="'openDetail(' + ${topic.id} + ')'">今天的心情很好 ☀️</td>
       <td th:text="${topic.topicDate}">2025-10-22 10:00</td>
-      <td><button class="btn-delete" onclick="deleteTopic(1)">删除</button></td>
+      <td><button class="btn-delete"
+                  th:if="${session.userBasic.id == topic.author.id}"
+                  th:onclick="'deleteTopic(' + ${topic.id} + ', event)'">删除</button></td>
     </tr>
     </tbody>
   </table>
@@ -134,20 +136,34 @@
 
 <script>
   function createNew() {
-    alert("打开创建动态页面（可跳转到 /page?page=frames/newTopic）");
-    // window.top.document.getElementById('iframeMain').src = '/page?page=frames/newTopic';
+    // alert("打开创建动态页面（可跳转到 /page?page=frames/newTopic）");
+    // 可以逢撞倒 js工具类 中统一管理
+    window.top.document.getElementById('iframeMain').src = '/qqzone/page?page=frames/newTopic';
   }
+  // 后端处理完再重定向页面
+  async function deleteTopic(id, event) {
+    event.stopPropagation();
+    if (!confirm('确定要删除这条动态吗？')) return;
+    try {
+      // 发送请求到后端删除接口
+      const response = await fetch(`/qqzone/topic.do?oper=delTopic&id=${id}`, {
+        method: 'POST', // 如果你的后端 deleteTopic 是通过 POST 判断的
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      });
+      // 重新渲染页面
+      if (response.ok) {
+        // 删除成功，移除对应的 DOM 元素
+        const btn = event.target;
+        const row = btn.closest('tr');
+        if (row) row.remove();
 
-  function deleteTopic(id) {
-    if (confirm("确定要删除编号 " + id + " 的动态吗？")) {
-      const row = event.target.closest("tr");
-      row.remove();
-
-      const rows = document.querySelectorAll("#topicTable tbody tr");
-      if (rows.length === 0) {
-        document.getElementById("noData").style.display = "block";
-        document.getElementById("topicTable").style.display = "none";
+        console.log(`已成功删除 topic: ${id}`);
+      } else {
+        alert('删除失败，请稍后再试。');
       }
+      console.log("response",response)
+    } catch (err) {
+      console.error('请求失败:', err);
     }
   }
 </script>

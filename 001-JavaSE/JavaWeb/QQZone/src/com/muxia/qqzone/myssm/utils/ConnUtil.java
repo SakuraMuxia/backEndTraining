@@ -95,7 +95,8 @@ public class ConnUtil {
             } catch (SQLException e) {
                 throw new RuntimeException(e.getMessage());
             }
-            threadLocal.set(null);
+            threadLocal.remove(); // ✅ 非常重要
+            // threadLocal.set(null);
         }
     }
 

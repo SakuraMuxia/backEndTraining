@@ -6,6 +6,7 @@ import com.muxia.qqzone.service.TopicService;
 import com.muxia.qqzone.service.UserBasicService;
 
 import javax.servlet.http.HttpSession;
+import java.time.LocalDateTime;
 import java.util.List;
 
 public class TopicController {
@@ -38,5 +39,20 @@ public class TopicController {
         session.setAttribute("topic",topic);
         // 渲染到 这个页面
         return "frames/detail";
+    }
+
+    // 添加新Topic
+    public String addTopic(String title,String content,HttpSession session){
+        UserBasic author = (UserBasic) session.getAttribute("userBasic");
+        LocalDateTime now = LocalDateTime.now().withNano(0);
+        Topic topic = new Topic(title, content, now, author);
+        topicService.addTopic(topic);
+        return "redirect:topic.do?oper=getTopicList&id=" + author.getId();
+    }
+    // 删除Topic
+    public String delTopic(Integer id,HttpSession session){
+        topicService.delTopic(id);
+        UserBasic author = (UserBasic) session.getAttribute("userBasic");
+        return "redirect:topic.do?oper=getTopicList&id=" + author.getId();
     }
 }

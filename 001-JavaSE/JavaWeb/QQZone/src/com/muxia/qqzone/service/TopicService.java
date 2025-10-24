@@ -15,4 +15,8 @@ public interface TopicService {
 
     // 根据id获取topic信息同时携带回复信息
     Topic getTopicWithReplyList(Integer id);
+
+    void addTopic(Topic topic);
+
+    void delTopic(Integer id);
 }

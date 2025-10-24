@@ -19,4 +19,15 @@ public class TopicDaoImpl extends BaseDao<Topic> implements TopicDao {
     public Topic getTopicById(Integer id) {
         return load("select * from t_topic where id = ? " , id);
     }
+
+    @Override
+    public void addTopic(Topic topic) {
+        String sql = "insert into t_topic values(0,?,?,?,?)";
+        executeUpdate(sql,topic.getTitle(),topic.getContent(),topic.getTopicDate(),topic.getAuthor().getId());
+    }
+
+    @Override
+    public void delTopic(Integer id) {
+        executeUpdate("delete from t_topic where id = ?" , id);
+    }
 }

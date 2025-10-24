@@ -36,43 +36,47 @@
           <span class="comment-user" th:text="*{author.nickName}">李四</span>
           <span class="comment-time" th:text="*{replyDate}">2025-10-23 10:40</span>
         </div>
-
         <!-- 评论内容 -->
         <div class="comment-content" th:text="*{content}">很棒的动态！</div>
-
-        <!-- ========================== -->
-        <!-- 如果主人有回复 -->
-        <!-- ========================== -->
-        <div th:if="*{ownerReply != null}" class="owner-reply-box">
-      <span class="owner-reply-meta">
-        <b th:text="*{owner.nickName}">张三</b> 回复
-        <b th:text="*{author.nickName}">李四</b>：
-      </span>
-          <span class="owner-reply-content" th:text="*{ownerReply.content}">
-        谢谢你的支持！
-      </span>
-          <span class="comment-time" th:text="*{ownerReply.replyDate}">2025-10-23 11:00</span>
+        <!-- 删除按钮 -->
+        <div class="comment-actions">
+          <a th:if="${session.userBasic.id == reply.author.id or session.userBasic.id == session.mainBasic.id}"
+             th:href="@{/reply.do(oper='delReply',replyId=*{id})}"
+             class="btn-delete">删除</a>
         </div>
-
-        <!-- ========================== -->
+        <!-- 如果主人有回复 -->
+        <div th:if="*{hostReply != null}" class="owner-reply-box">
+          <span class="owner-reply-meta">
+            <b th:text="${session.topic.author.nickName}">张三</b> 回复
+            <b th:text="*{author.nickName}">李四</b>：
+          </span>
+          <span class="owner-reply-content" th:text="*{hostReply.content}"> 谢谢你的支持！ </span>
+          <span class="comment-time" th:text="*{hostReply.hostReplyDate}">2025-10-23 11:00</span>
+        </div>
         <!-- 如果主人还没回复，显示回复按钮 -->
-        <!-- ========================== -->
-        <div th:if="*{ownerReply == null}" class="comment-actions">
+        <div th:if="${session.mainBasic.nickName == session.userBasic.nickName && reply.hostReply == null}" class="comment-actions">
           <button class="btn-reply" th:onclick="'showReplyBox(' + *{id} + ')'">回复</button>
         </div>
-
         <!-- 主人回复输入框 -->
         <div class="reply-box" th:id="'replyBox-' + *{id}" style="display: none;">
-          <textarea placeholder="输入回复..." class="reply-text"></textarea>
-          <button class="btn-send">发送</button>
+          <form th:action="@{/hostReply.do}" method="post" th:id="'replyForm-' + *{id}">
+            <input type="hidden" name="oper" value="addHostReply"/>
+            <input type="hidden" name="replyId" th:value="*{id}"/> <!-- 回复哪一条评论 -->
+            <textarea name="content" placeholder="输入回复..." class="reply-text"></textarea>
+            <button type="submit" class="btn-send">发送</button>
+          </form>
         </div>
 
       </div>
 
       <!-- 新评论输入框 -->
-      <div class="new-comment">
-        <textarea placeholder="写下你的评论..." name="content"></textarea>
-        <button class="btn-send">发表评论</button>
+      <div class="new-comment" >
+        <form th:action="@{/reply.do}" method="post" th:id="'replyForm-' + ${session.topic.id}">
+          <input type="hidden" name="oper" value="addReply"/>
+          <input type="hidden" name="topicId" th:value="${session.topic.id}"/>
+          <textarea name="content" placeholder="输入回复..." class="reply-text"></textarea>
+          <button type="submit" class="btn-send">发表评论</button>
+        </form>
       </div>
     </div>
   </div>

@@ -33,4 +33,27 @@ public class ReplyServiceImpl implements ReplyService {
         }
         return replyList;
     }
+
+    @Override
+    public void addReply(Reply reply) {
+        replyDao.addReply(reply);
+    }
+
+    @Override
+    public void delReply(Integer replyId) {
+        //先删除主人回复
+        hostReplyService.delHostReplyByReplyId(replyId);
+        // 删除回复
+        replyDao.delReplyById(replyId);
+    }
+
+    @Override
+    public void delReplyByTopicId(Integer TopicId) {
+        // 获取 回复列表
+        List<Reply> replyList = replyDao.getReplyListByTopicId(TopicId);
+        replyList.forEach(item ->{
+            delReply(item.getId());
+        });
+    }
+
 }

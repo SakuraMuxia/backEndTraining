@@ -25,6 +25,13 @@ public class Reply {
         this.id = id;
     }
 
+    public Reply(String content, LocalDateTime replyDate, UserBasic author, Topic topic) {
+        this.content = content;
+        this.replyDate = replyDate;
+        this.author = author;
+        this.topic = topic;
+    }
+
     public Integer getId() {
         return id;
     }
