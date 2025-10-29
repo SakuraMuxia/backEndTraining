@@ -80,6 +80,7 @@ public class ClassUtil {
     public static boolean isMyType(String className){
         switch (className){
             case "java.lang.String":
+            case "java.lang.Double":
             case "java.lang.Integer":
             case "java.lang.Long":
             case "java.util.Date":

@@ -122,7 +122,7 @@ public class DispatcherServlet extends ViewBaseServlet {
                     }
                     // 遍历参数值
                     for (Object o : parameterValueArr) {
-                        System.out.println("o = " + o);
+                        System.out.println("前端传递参数 = " + o);
                     }
                     // 执行方法
                     Object returnObj = method.invoke(bean, parameterValueArr);

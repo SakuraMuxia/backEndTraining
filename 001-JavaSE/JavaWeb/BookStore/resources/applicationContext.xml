@@ -15,9 +15,20 @@
 
 <beans>
     <!--1. DAO配置 -->
-
+    <bean id="bookDao" class="com.muxia.bookstore.dao.impl.BookDaoImpl"/>
+    <bean id="userDao" class="com.muxia.bookstore.dao.impl.UserDaoImpl"/>
     <!--2. Service配置 -->
-
+    <bean id="bookService" class="com.muxia.bookstore.service.impl.BookServiceImpl">
+        <property name="bookDao" ref="bookDao"/>
+    </bean>
+    <bean id="userService" class="com.muxia.bookstore.service.impl.UserServiceImpl">
+        <property name="userDao" ref="userDao"/>
+    </bean>
     <!--3. Controller配置 -->
-
+    <bean id="book" class="com.muxia.bookstore.controller.BookController">
+        <property name="bookService" ref="bookService"/>
+    </bean>
+    <bean id="user" class="com.muxia.bookstore.controller.UserController">
+        <property name="userService" ref="userService"/>
+    </bean>
 </beans>
