@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE beans [
+    <!--定义元素根节点 * 一个或多个 -->
+    <!ELEMENT beans (bean*)>
+    <!--定义元素bean子节点 * 一个或多个 -->
+    <!ELEMENT bean (property*)>
+    <!--定义元素property节点 类型为字符串 -->
+    <!ELEMENT property (#PCDATA)>
+    <!--定义节点上的属性-->
+    <!ATTLIST bean id ID #REQUIRED>
+    <!ATTLIST bean class CDATA #REQUIRED>
+    <!ATTLIST property name CDATA #REQUIRED>
+    <!ATTLIST property ref IDREF #REQUIRED>
+]>
+
+<beans>
+    <!--1. DAO配置 -->
+
+    <!--2. Service配置 -->
+
+    <!--3. Controller配置 -->
+
+</beans>

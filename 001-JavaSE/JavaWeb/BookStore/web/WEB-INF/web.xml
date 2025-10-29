@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
+         version="4.0">
+    <context-param>
+        <param-name>view-prefix</param-name>
+        <param-value>/WEB-INF/pages/</param-value>
+    </context-param>
+    <context-param>
+        <param-name>view-suffix</param-name>
+        <param-value>.html</param-value>
+    </context-param>
+
+    <filter>
+        <filter-name>CharacterEncodingFilter</filter-name>
+        <filter-class>com.muxia.bookstore.myssm.filter.CharacterEncodingFilter</filter-class>
+        <init-param>
+            <param-name>encoding</param-name>
+            <param-value>UTF-8</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>CharacterEncodingFilter</filter-name>
+        <url-pattern>*.do</url-pattern>
+    </filter-mapping>
+
+    <filter>
+        <filter-name>OpenSessionInViewFilter</filter-name>
+        <filter-class>com.muxia.bookstore.myssm.filter.OpenSessionViewFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>OpenSessionInViewFilter</filter-name>
+        <url-pattern>*.do</url-pattern>
+    </filter-mapping>
+
+    <listener>
+        <listener-class>com.muxia.bookstore.myssm.listener.ContextLoaderListener</listener-class>
+    </listener>
+
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>applicationContext.xml</param-value>
+    </context-param>
+
+</web-app>
