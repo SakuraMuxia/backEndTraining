@@ -17,6 +17,10 @@ public class OrderBean {
     public OrderBean() {
     }
 
+    public OrderBean(Integer id) {
+        this.id = id;
+    }
+
     public Integer getId() {
         return id;
     }

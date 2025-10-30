@@ -11,6 +11,10 @@ public class OrderDetail {
     public OrderDetail() {
     }
 
+    public OrderDetail(Integer id) {
+        this.id = id;
+    }
+
     public Integer getId() {
         return id;
     }

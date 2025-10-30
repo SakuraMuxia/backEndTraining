@@ -1,5 +1,7 @@
 package com.muxia.bookstore.pojo;
 
+// 购物车袋子，每个袋子中装着同一本数
+// 购物袋子，对应数据库中的 t_cart 表
 public class CartItem {
     private Integer id ;
     private Book book ;
@@ -9,6 +11,18 @@ public class CartItem {
     private User user;
 
     public CartItem() {
+    }
+
+    public CartItem(Integer id) {
+        this.id = id;
+    }
+
+    public CartItem(Book book, String bookName, Double price, Integer buyCount, User user) {
+        this.book = book;
+        this.bookName = bookName;
+        this.price = price;
+        this.buyCount = buyCount;
+        this.user = user;
     }
 
     public Integer getId() {

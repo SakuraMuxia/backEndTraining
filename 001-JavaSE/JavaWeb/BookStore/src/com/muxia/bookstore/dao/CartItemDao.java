@@ -9,4 +9,8 @@ import java.util.List;
 public interface CartItemDao {
     // 根据用户ID获取 用户的购物车商品
     List<CartItem> getCartItemListByUserId(Integer userId);
+
+    void updateCartItem(CartItem cartItem);
+
+    void addCartItem(CartItem cartItem);
 }

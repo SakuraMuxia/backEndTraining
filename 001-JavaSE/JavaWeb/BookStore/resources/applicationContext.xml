@@ -17,6 +17,7 @@
     <!--1. DAO配置 -->
     <bean id="bookDao" class="com.muxia.bookstore.dao.impl.BookDaoImpl"/>
     <bean id="userDao" class="com.muxia.bookstore.dao.impl.UserDaoImpl"/>
+    <bean id="cartItemDao" class="com.muxia.bookstore.dao.impl.CartItemDaoImpl"/>
     <!--2. Service配置 -->
     <bean id="bookService" class="com.muxia.bookstore.service.impl.BookServiceImpl">
         <property name="bookDao" ref="bookDao"/>
@@ -24,11 +25,19 @@
     <bean id="userService" class="com.muxia.bookstore.service.impl.UserServiceImpl">
         <property name="userDao" ref="userDao"/>
     </bean>
+    <bean id="cartItemService" class="com.muxia.bookstore.service.impl.CartItemServiceImpl">
+        <property name="cartItemDao" ref="cartItemDao"/>
+        <property name="bookService" ref="bookService"/>
+    </bean>
     <!--3. Controller配置 -->
     <bean id="book" class="com.muxia.bookstore.controller.BookController">
         <property name="bookService" ref="bookService"/>
     </bean>
     <bean id="user" class="com.muxia.bookstore.controller.UserController">
         <property name="userService" ref="userService"/>
+    </bean>
+    <bean id="cart" class="com.muxia.bookstore.controller.CartController">
+        <property name="cartItemService" ref="cartItemService"/>
+        <property name="bookService" ref="bookService"/>
     </bean>
 </beans>

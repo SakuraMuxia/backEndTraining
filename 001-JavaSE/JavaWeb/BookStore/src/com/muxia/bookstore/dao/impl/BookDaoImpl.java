@@ -11,4 +11,9 @@ public class BookDaoImpl extends BaseDao<Book> implements BookDao {
     public List<Book> getBookList() {
         return executeQuery("select * from t_book");
     }
+
+    @Override
+    public Book getBook(Integer bookId) {
+        return load("select * from t_book where id = ? " , bookId);
+    }
 }

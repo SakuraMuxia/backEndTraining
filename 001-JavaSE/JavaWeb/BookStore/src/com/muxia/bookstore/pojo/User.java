@@ -10,9 +10,24 @@ public class User {
     private Integer role ;
     // 订单列表
     private List<OrderBean> orderBeanList;
+    private Cart cart;
 
     public User() {
     }
+
+    public User(Integer id) {
+        this.id = id;
+    }
+
+    public Cart getCart() {
+        return cart;
+    }
+
+    public void setCart(Cart cart) {
+        this.cart = cart;
+    }
+
+
 
     public Integer getId() {
         return id;
